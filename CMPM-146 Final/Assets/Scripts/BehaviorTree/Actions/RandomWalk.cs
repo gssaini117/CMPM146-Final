@@ -11,6 +11,7 @@ public class RandomWalk : Node
    {
       NextDestination = new Vector3(0,4,0);
       FindNextDestination();
+      Tree.agent.destination = NextDestination;
    }
 
    public bool FindNextDestination()
@@ -31,17 +32,16 @@ public class RandomWalk : Node
    public override Result Execute()
    {
       // if we've arrived at the point, then find the next destination
-      if(Tree.gameObject.transform.position == NextDestination)
+      if(Tree.agent.hasPath == false)
       {
          if(!FindNextDestination()) {
+            Tree.agent.destination = NextDestination;
             return Result.Failure;
          } else {
+            Tree.agent.destination = NextDestination;
             return Result.Success;
          }
       } else {
-         Tree.gameObject.transform.position = 
-            Vector3.MoveTowards(Tree.gameObject.transform.position, 
-               NextDestination, Time.deltaTime * speed);
          
          return Result.Running;
       }

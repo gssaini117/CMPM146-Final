@@ -99,14 +99,31 @@ public class Sequencer : Composite
 // Decorator Nodes
 public class Repeater : Decorator
 {
-   private int currentNode = 0;
    public Repeater(BehaviorTree t, Node c) : base(t, c)
    {
    }
 
-   public override Result Execute() {
+   public override Result Execute() 
+   {
       //Debug.Log("Child returned " + Child.Execute());
       Child.Execute();
+      return Result.Running;
+   }
+}
+
+public class RepeatUntilSuccess : Decorator
+{
+   public RepeatUntilSuccess(BehaviorTree t, Node c) : base(t, c)
+   {
+   }
+
+   public override Result Execute()
+   {
+      Result result = Child.Execute();
+      if(result == Result.Success)
+      {
+         return Result.Success;
+      }
       return Result.Running;
    }
 }

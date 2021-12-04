@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BehaviorTree : MonoBehaviour
 {
     private Node mRoot;
     private bool StartedBehavior;
     private Coroutine behavior;
-
+    public NavMeshAgent agent;
     public Dictionary<string, object> Blackboard {get; set; }
     public Node Root {get {return mRoot;}}
     // Start is called before the first frame update
