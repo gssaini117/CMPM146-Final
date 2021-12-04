@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 
 // This leaf node
-public class BTRandomWalk : BTNode
+public class RandomWalk : Node
 {
    protected Vector3 NextDestination {get; set;}
-   public float speed;
+   public float speed = 5.0f;
 
-   public BTRandomWalk(BehaviorTree t) : base(t)
+   public RandomWalk(BehaviorTree t) : base(t)
    {
-      NextDestination = Vector3.zero;
+      NextDestination = new Vector3(0,4,0);
       FindNextDestination();
    }
 
@@ -20,9 +20,9 @@ public class BTRandomWalk : BTNode
       found = Tree.Blackboard.TryGetValue("WorldBounds", out o);
       if(found) {
          Rect bounds = (Rect)o;
-         float x = UnityEngine.Random.value * bounds.width;
-         float y = UnityEngine.Random.value * bounds.height;
-         NextDestination = new Vector3(x,y, NextDestination.z);
+         float x = UnityEngine.Random.value * bounds.width - bounds.width/2;
+         float z= UnityEngine.Random.value * bounds.height - bounds.height/2;
+         NextDestination = new Vector3(x,NextDestination.y, z);
       }
 
       return found;

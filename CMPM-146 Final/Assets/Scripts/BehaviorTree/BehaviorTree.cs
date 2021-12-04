@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class BehaviorTree : MonoBehaviour
 {
-    private BTNode mRoot;
+    private Node mRoot;
     private bool StartedBehavior;
     private Coroutine behavior;
 
     public Dictionary<string, object> Blackboard {get; set; }
-    public BTNode Root {get {return mRoot;}}
+    public Node Root {get {return mRoot;}}
     // Start is called before the first frame update
     void Start()
     {
         Blackboard = new Dictionary<string, object>();
-        Blackboard.Add("Worldbounds", new Rect(0,0,5,5));
+        Blackboard.Add("WorldBounds", new Rect(0,0,40,40));
 
         // initial behavior is stopped
         StartedBehavior = false;
 
-        mRoot = new BTNode(this);
+
+        // modify this to create the Behavior Tree
+        mRoot = new Repeater(this, new Sequencer(this, new Node[] { new RandomWalk(this)}));
     }
 
     // Update is called once per frame
@@ -31,10 +33,12 @@ public class BehaviorTree : MonoBehaviour
         }
     }
 
-    private IEnumerator RunBehavior() {
-        BTNode.Result result = Root.Execute();
-        while(result == BTNode.Result.Running) {
-            Debug.Log("Root result: " + result);
+    private IEnumerator RunBehavior() 
+    {
+        Node.Result result = Root.Execute();
+        while(result == Node.Result.Running) 
+        {
+            //Debug.Log("Root result: " + result);
             yield return null;
             result = Root.Execute();
         }
@@ -42,3 +46,5 @@ public class BehaviorTree : MonoBehaviour
         Debug.Log("Behavior has finished with: " + result);
     }
 }
+
+
