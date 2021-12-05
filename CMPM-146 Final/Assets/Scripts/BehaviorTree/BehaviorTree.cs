@@ -25,12 +25,9 @@ public class BehaviorTree : MonoBehaviour
 
         // modify this to create the Behavior Tree
 
-        Node[] takeCover = new Node[2];
-        takeCover[0] = new PlayerLookingTowards(this);
-        takeCover[1] = new TakeCover(this);
-        Node[] selector = new Node[2];
-        selector[0] = new Sequencer(this, takeCover);
-        selector[1] = new WalkToPlayer(this);
+        Node[] takeCover = new Node[] {new PlayerLookingTowards(this),new TakeCover(this)};
+
+        Node[] selector = new Node[] {new Sequencer(this, takeCover), new WalkToPlayer(this)};
 
         mRoot = new Repeater(this, new Selector(this, selector));
     }
@@ -57,5 +54,3 @@ public class BehaviorTree : MonoBehaviour
         Debug.Log("Behavior has finished with: " + result);
     }
 }
-
-
