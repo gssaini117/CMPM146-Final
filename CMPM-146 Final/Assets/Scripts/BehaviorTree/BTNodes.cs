@@ -82,6 +82,7 @@ public class Sequencer : Composite
             currentNode = 0;
             return Result.Failure;
          } else {
+            Debug.Log("Completed: " +Children[currentNode]);
             currentNode++;
             if(currentNode < Children.Count) {
                return Result.Running;
@@ -121,6 +122,23 @@ public class RepeatUntilSuccess : Decorator
    {
       Result result = Child.Execute();
       if(result == Result.Success)
+      {
+         return Result.Success;
+      }
+      return Result.Running;
+   }
+}
+
+public class RepeatUntilFailure : Decorator
+{
+   public RepeatUntilFailure(BehaviorTree t, Node c) : base(t, c)
+   {
+   }
+
+   public override Result Execute()
+   {
+      Result result = Child.Execute();
+      if(result == Result.Failure)
       {
          return Result.Success;
       }

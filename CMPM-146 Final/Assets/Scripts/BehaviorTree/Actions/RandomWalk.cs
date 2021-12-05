@@ -4,6 +4,7 @@ using UnityEngine;
 // This leaf node
 public class RandomWalk : Node
 {
+   public bool running = false;
    protected Vector3 NextDestination {get; set;}
 
    public RandomWalk(BehaviorTree t) : base(t)
@@ -30,18 +31,20 @@ public class RandomWalk : Node
 
    public override Result Execute()
    {
-      // if we've arrived at the point, then find the next destination
-      if(Tree.agent.hasPath == false)
+      if(running == false)
       {
+         running = true;
          if(!FindNextDestination()) {
             return Result.Failure;
-         } else {
-            Tree.agent.destination = NextDestination;
+         }
+         Tree.agent.destination = NextDestination;
+         return Result.Running;
+      } else{
+         if(Tree.agent.hasPath == false) {
+            running = false;
             return Result.Success;
          }
-      } else {
-         
          return Result.Running;
-      }
+      } 
    }
 }

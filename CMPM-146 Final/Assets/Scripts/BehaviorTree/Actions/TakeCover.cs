@@ -8,6 +8,7 @@ using System.Linq;
 // This leaf node
 public class TakeCover : Node
 {
+   private bool running = false;
    protected Vector3 NextDestination {get; set;}
    private Vector3 Player = new Vector3(0,4,0);
    private Collider[] Colliders = new Collider[10]; // more is less performant, but more options
@@ -15,8 +16,6 @@ public class TakeCover : Node
    public TakeCover(BehaviorTree t) : base(t)
    {
       NextDestination = Tree.gameObject.transform.position;
-      FindCover();
-      Tree.agent.destination = NextDestination;
    }
 
    public bool FindCover()
@@ -33,7 +32,7 @@ public class TakeCover : Node
             }
             if(Vector3.Dot(hit.normal, (Player - hit.position).normalized) < HideSensitivity)
             {
-               Tree.agent.SetDestination(hit.position);
+               NextDestination = hit.position;
                return true;
             }
             else
@@ -58,18 +57,20 @@ public class TakeCover : Node
 
    public override Result Execute()
    {
-      if(Tree.agent.hasPath == false)
+      if(running == false)
       {
+         running = true;
          if(!FindCover()) {
             return Result.Failure;
-         } else {
-            
-            return Result.Success;
          }
-      } else {
          Tree.agent.destination = NextDestination;
          return Result.Running;
-      }
-
+      } else{
+         if(Tree.agent.hasPath == false) {
+            running = false;
+            return Result.Success;
+         }
+         return Result.Running;
+      } 
    }
 }
