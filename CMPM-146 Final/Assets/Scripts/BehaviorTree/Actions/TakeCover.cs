@@ -11,7 +11,7 @@ public class TakeCover : Node
    private bool running = false;
    protected Vector3 NextDestination {get; set;}
    private Vector3 Player = new Vector3(0,4,0);
-   private Collider[] Colliders = new Collider[10]; // more is less performant, but more options
+   private Collider[] Colliders = new Collider[20]; // more is less performant, but more options
    public float HideSensitivity = 0;
    public TakeCover(BehaviorTree t) : base(t)
    {
@@ -20,8 +20,16 @@ public class TakeCover : Node
 
    public bool FindCover()
    {
+      for(int i = 0; i < Colliders.Length; i++)
+      {
+         Colliders[i] = null;
+      }
+
       int hits = Physics.OverlapSphereNonAlloc(Tree.agent.transform.position, 
       Tree.lineOfSightChecker.Collider.radius, Colliders, Tree.HidableLayers);
+
+      System.Array.Sort(Colliders, ColliderArraySortComparer);
+
       for(int i = 0; i < hits; i++)
       {
          if(NavMesh.SamplePosition(Colliders[i].transform.position, out NavMeshHit hit, 2f, Tree.agent.areaMask))
@@ -37,7 +45,8 @@ public class TakeCover : Node
             }
             else
             {
-               if(NavMesh.SamplePosition(Colliders[i].transform.position - (Player - hit.position).normalized * 2, out NavMeshHit hit2, 2f, Tree.agent.areaMask))
+               if(NavMesh.SamplePosition(Colliders[i].transform.position - (Player - hit.position).normalized * 2,
+                      out NavMeshHit hit2, 2f, Tree.agent.areaMask))
                {
                   if(!NavMesh.FindClosestEdge(hit2.position, out hit2, Tree.agent.areaMask))
                   {
@@ -53,6 +62,27 @@ public class TakeCover : Node
          }
       }
       return false;
+   }
+
+   private int ColliderArraySortComparer(Collider A, Collider B)
+   {
+      if(A== null && B != null)
+      {
+         return 1;
+      }
+      else if(A != null && B == null)
+      {
+         return  -1;
+      }
+      else if(A == null && B == null)
+      {
+         return 0;
+      }
+      else
+      {
+         return Vector3.Distance(Tree.agent.transform.position, A.transform.position).CompareTo
+               (Vector3.Distance(Tree.agent.transform.position, B.transform.position));
+      }
    }
 
    public override Result Execute()

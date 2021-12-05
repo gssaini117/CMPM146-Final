@@ -16,9 +16,11 @@ public class WalkToPlayer : Node
    public override Result Execute()
    {
       Tree.agent.destination = NextDestination;
+      return Result.Success;
+      /* uninterruptable
       if(Tree.agent.remainingDistance == 0) {
          return Result.Success;
       }
-      return Result.Running;
+      return Result.Running;*/
    }
 }

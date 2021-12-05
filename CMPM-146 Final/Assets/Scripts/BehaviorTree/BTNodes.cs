@@ -52,15 +52,17 @@ public class Selector : Composite
          if(result == Result.Running) {
             return Result.Running;
          } else if( result == Result.Success) {
+            currentNode = 0;
             return Result.Success;
          } else if( result == Result.Failure) {
+            //Debug.Log("Completed: " +Children[currentNode]);
             currentNode++;
             if(currentNode < Children.Count) {
                return Result.Running;
             }
          }
       }
-
+      currentNode = 0;
       return Result.Failure;
    }
 }
@@ -82,7 +84,7 @@ public class Sequencer : Composite
             currentNode = 0;
             return Result.Failure;
          } else {
-            Debug.Log("Completed: " +Children[currentNode]);
+            //Debug.Log("Completed: " +Children[currentNode]);
             currentNode++;
             if(currentNode < Children.Count) {
                return Result.Running;
@@ -92,7 +94,7 @@ public class Sequencer : Composite
             }
          }
       }
-
+      currentNode = 0;
       return Result.Success;
    }
 }

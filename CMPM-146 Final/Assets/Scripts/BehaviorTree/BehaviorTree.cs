@@ -24,10 +24,15 @@ public class BehaviorTree : MonoBehaviour
 
 
         // modify this to create the Behavior Tree
-        Node[] actions = new Node[2];
-        actions[0] = new TakeCover(this);
-        actions[1] = new RandomWalk(this);
-        mRoot = new RepeatUntilFailure(this,new Sequencer(this, actions));
+
+        Node[] takeCover = new Node[2];
+        takeCover[0] = new PlayerLookingTowards(this);
+        takeCover[1] = new TakeCover(this);
+        Node[] selector = new Node[2];
+        selector[0] = new Sequencer(this, takeCover);
+        selector[1] = new WalkToPlayer(this);
+
+        mRoot = new Repeater(this, new Selector(this, selector));
     }
 
     // Update is called once per frame
