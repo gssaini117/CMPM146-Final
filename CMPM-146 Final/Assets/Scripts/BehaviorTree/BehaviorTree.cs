@@ -9,6 +9,8 @@ public class BehaviorTree : MonoBehaviour
     private bool StartedBehavior;
     private Coroutine behavior;
     public NavMeshAgent agent;
+    public LineOfSightChecker lineOfSightChecker;
+    public LayerMask HidableLayers;
     public Dictionary<string, object> Blackboard {get; set; }
     public Node Root {get {return mRoot;}}
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class BehaviorTree : MonoBehaviour
 
 
         // modify this to create the Behavior Tree
-        mRoot = new Repeater(this, new Sequencer(this, new Node[] { new RandomWalk(this)}));
+        mRoot = new TakeCover(this);
     }
 
     // Update is called once per frame

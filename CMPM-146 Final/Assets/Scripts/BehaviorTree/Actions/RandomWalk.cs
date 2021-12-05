@@ -5,7 +5,6 @@ using UnityEngine;
 public class RandomWalk : Node
 {
    protected Vector3 NextDestination {get; set;}
-   public float speed = 5.0f;
 
    public RandomWalk(BehaviorTree t) : base(t)
    {
@@ -35,7 +34,6 @@ public class RandomWalk : Node
       if(Tree.agent.hasPath == false)
       {
          if(!FindNextDestination()) {
-            Tree.agent.destination = NextDestination;
             return Result.Failure;
          } else {
             Tree.agent.destination = NextDestination;
