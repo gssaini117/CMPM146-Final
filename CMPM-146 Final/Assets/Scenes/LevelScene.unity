@@ -4915,6 +4915,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1278913714038561711, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
+      propertyPath: mouseSensitivity
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1278913714187301434, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -7326,6 +7330,11 @@ MonoBehaviour:
   Bot_List: {fileID: 108348683}
   Level: {fileID: 483700434}
   Bot_Prefab: {fileID: 3119436963654907535, guid: fb3cdde94ac0a4f43b4d2b023e17e204, type: 3}
+  BotObj: []
+  CURRENT_HEALTH: 5000
+  HIT_DIST: 2
+  SPAWN_OFFSET: 2
+  BOT_COUNT: 10
 --- !u!4 &1481539466
 Transform:
   m_ObjectHideFlags: 0

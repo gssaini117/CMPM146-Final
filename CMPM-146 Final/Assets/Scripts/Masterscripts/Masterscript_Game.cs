@@ -19,14 +19,13 @@ public class Masterscript_Game : MonoBehaviour
     public List<GameObject> BotObj;         // Bot Object List
 
     // Public Adjustment Variables
-    public int MAX_HEALTH = 3;            // Max number of hits the player can take before failing.
+    public int CURRENT_HEALTH = 3;            // Max number of hits the player can take before failing.
     public int HIT_DIST = 2;               // Amount of studs away from the player to be considered 'hit'.
     public int SPAWN_OFFSET = 2;           // Spawn offset from borders of map.
     public int BOT_COUNT = 2;              // Number of bots present.
 
     // Private Fluid Variables
     private bool Game_Over = false;         // Checks if the game is currently playing.
-    private int Current_Health = 3;         // Player Current Health.
     private int Max_Time = 60;              // Time until game is over?
     private int Num_Bots = 0;               // Current number of bots alive.
 
@@ -85,18 +84,18 @@ public class Masterscript_Game : MonoBehaviour
             float distance = Vector3.Distance(Player.transform.position, Bot.transform.position);
 
             // Check Hit
-            if (distance < HIT_DIST && Bot.gameObject.GetComponent<BehaviorTree>())
+            if (distance < HIT_DIST)
             {
                 temp.Add(Bot);
-                Destroy(Bot.gameObject);
                 Num_Bots--;
                 // Reducing Health
-                Current_Health -= 1;
+                CURRENT_HEALTH -= 1;
             }
         }
         // deletes the bots from the List
         foreach(GameObject Bot in temp) {
             BotObj.Remove(Bot);
+            Destroy(Bot.gameObject);
         }
     }
     
@@ -126,10 +125,10 @@ public class Masterscript_Game : MonoBehaviour
 
         // Updating UI
         Game_Screen.transform.Find("TMP_Health").GetComponent<TMPro.TextMeshProUGUI>().text = 
-            "Health: " + Current_Health;
+            "Health: " + CURRENT_HEALTH;
 
         // Checking for Game Over
-        if (Current_Health <= 0) {
+        if (CURRENT_HEALTH <= 0) {
             Game_Over = true;
         }
     }
