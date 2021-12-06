@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // The Master Script manages player stats and game state transition.
 
@@ -25,7 +26,7 @@ public class Masterscript_Game : MonoBehaviour
 
     // Private Fluid Variables
     private bool Game_Over = false;         // Checks if the game is currently playing.
-    private int Max_Time = 60;              // Time until game is over?
+    private int Kill_Count = 0;             // Number of kills the player has.
 
     // ==================================================================
     // Functions
@@ -79,6 +80,9 @@ public class Masterscript_Game : MonoBehaviour
 
             // Deletes the bot
             if (!Bot.gameObject.GetComponent<BehaviorTree>()) {
+                if (distance > HIT_DIST) {
+                    Kill_Count++;
+                }
                 Destroy(Bot.gameObject);
             }
 
@@ -101,7 +105,9 @@ public class Masterscript_Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Game_Over) { return; } // Only runs once the game has started
+        if (Game_Over) { 
+            SceneManager.LoadScene("Scene_End");
+        } // Only runs once the game has started
 
         // Making sure bots are available
         if (Bot_List.transform.childCount < BOT_COUNT) 
@@ -115,6 +121,9 @@ public class Masterscript_Game : MonoBehaviour
         // Updating UI
         Game_Screen.transform.Find("TMP_Health").GetComponent<TMPro.TextMeshProUGUI>().text = 
             "Health: " + MAX_HEALTH;
+
+        Game_Screen.transform.Find("TMP_Kills").GetComponent<TMPro.TextMeshProUGUI>().text = 
+            "Kills: " + Kill_Count;
 
         // Checking for Game Over
         if (MAX_HEALTH <= 0) {

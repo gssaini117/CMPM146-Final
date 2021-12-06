@@ -21,21 +21,22 @@ public class Masterscript_Start : MonoBehaviour
     // Enacts Tutorial Behavior
     private void press_Tutorial()
     {
-        Debug.Log("Start has been pressed");    
+        Debug.Log("Tutorial has been pressed");    
+        SceneManager.LoadScene("Scene_Tutorial");
     }
 
     // Enacts Exit Behavior
     private void press_Exit()
     {
-        Debug.Log("Start has been pressed");
+        Debug.Log("Exit has been pressed");
     }
 
     // Runs ones to bind button behaviors to the buttons.
     void Start() 
     {
         Start_Button.onClick.AddListener(press_Start);
-        Start_Button.onClick.AddListener(press_Tutorial);
-        Start_Button.onClick.AddListener(press_Exit);
+        Tutorial_Button.onClick.AddListener(press_Tutorial);
+        Exit_Button.onClick.AddListener(press_Exit);
     }
 
     // Update is called once per frame
