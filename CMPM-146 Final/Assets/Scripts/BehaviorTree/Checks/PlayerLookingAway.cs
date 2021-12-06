@@ -13,7 +13,7 @@ public class PlayerLookingAway : Node
    {
       // do the check here?
       Vector3 directionToObject = Tree.agent.transform.position - Camera.main.transform.position;
-      if(Vector3.Angle(Camera.main.transform.forward, directionToObject) > Camera.main.fieldOfView) {
+      if(Vector3.Angle(Camera.main.transform.forward, directionToObject) > Camera.main.fieldOfView + 60f) {
          return Result.Success;
       }
       return Result.Failure;

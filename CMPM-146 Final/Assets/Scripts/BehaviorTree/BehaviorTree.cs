@@ -27,9 +27,11 @@ public class BehaviorTree : MonoBehaviour
 
         Node[] killPlayer = new Node[] { new KillZone(this), new RunToPlayer(this)};
 
-        Node[] takeCover = new Node[] {new PlayerLookingTowards(this),new TakeCover(this)};
+        Node[] takeCover = new Node[] {new PlayerLookingTowards(this), new TakeCover(this)};
 
-        Node[] selector = new Node[] {new Sequencer(this, killPlayer), new Sequencer(this, takeCover), new WalkToPlayer(this)};
+        Node[] moveToPlayer = new Node[] { new PlayerLookingAway(this), new WalkToPlayer(this) };
+
+        Node[] selector = new Node[] {new Sequencer(this, killPlayer), new Sequencer(this, takeCover), new Sequencer(this, moveToPlayer), new WalkToCloserCover(this)};
 
         mRoot = new Repeater(this, new Selector(this, selector));
     }
