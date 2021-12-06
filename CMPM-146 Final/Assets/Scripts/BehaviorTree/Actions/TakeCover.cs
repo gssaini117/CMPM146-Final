@@ -91,6 +91,7 @@ public class TakeCover : Node
       {
          running = true;
          if(!FindCover()) {
+            running = false;
             return Result.Failure;
          }
          Tree.agent.destination = NextDestination;
