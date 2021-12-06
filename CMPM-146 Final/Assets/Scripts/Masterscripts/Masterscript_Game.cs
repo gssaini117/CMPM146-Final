@@ -4,15 +4,13 @@ using UnityEngine;
 
 // The Master Script manages player stats and game state transition.
 
-public class Masterscript : MonoBehaviour
+public class Masterscript_Game : MonoBehaviour
 {
     // ==================================================================
     // Variables
     // ==================================================================
     // Public Variables
-    public Canvas Main_Screen;              // Main Menu Ui
     public Canvas Game_Screen;              // In-Game Ui
-    public Canvas Over_Screen;              // Game Over Ui
 
     public GameObject Player;               // Player Object
     public GameObject Bot_List;             // Empty List of Bots
