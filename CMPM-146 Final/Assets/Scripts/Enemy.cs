@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if (gameObject.GetComponent<BehaviorTree>()) {
+            Destroy(gameObject.GetComponent<BehaviorTree>());
+        }
     }
 }
