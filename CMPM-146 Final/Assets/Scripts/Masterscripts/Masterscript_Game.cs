@@ -83,7 +83,7 @@ public class Masterscript_Game : MonoBehaviour
             }
 
             // Check Hit
-            if (distance < HIT_DIST)
+            if (distance < HIT_DIST && Bot.gameObject.GetComponent<BehaviorTree>())
             {
                 Destroy(Bot.gameObject.GetComponent<BehaviorTree>());
                 MAX_HEALTH -= 1;
