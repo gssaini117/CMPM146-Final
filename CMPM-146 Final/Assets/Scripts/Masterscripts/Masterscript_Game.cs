@@ -70,7 +70,8 @@ public class Masterscript_Game : MonoBehaviour
                 break;
         }
         Debug.Log(pos);
-        Instantiate(Bot_Prefab, pos, Quaternion.identity, Bot_List.transform);
+        GameObject Bot = (GameObject)Instantiate(Bot_Prefab, pos, Quaternion.identity, Bot_List.transform);
+        BotObj.Add(Bot);
         Num_Bots++;
     }
     
