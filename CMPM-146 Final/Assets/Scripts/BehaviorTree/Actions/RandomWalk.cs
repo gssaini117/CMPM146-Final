@@ -9,7 +9,7 @@ public class RandomWalk : Node
 
    public RandomWalk(BehaviorTree t) : base(t)
    {
-      NextDestination = new Vector3(0,4,0);
+      NextDestination = new Vector3(0,2,0);
       FindNextDestination();
       Tree.agent.destination = NextDestination;
    }
