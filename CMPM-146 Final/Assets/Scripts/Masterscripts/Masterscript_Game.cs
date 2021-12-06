@@ -18,11 +18,11 @@ public class Masterscript_Game : MonoBehaviour
     public GameObject Bot_Prefab;           // Bot Enemy Prefab
     public List<GameObject> BotObj;         // Bot Object List
 
-    // Private Adjustment Variables
-    private int MAX_HEALTH = 3;            // Max number of hits the player can take before failing.
-    private int HIT_DIST = 2;               // Amount of studs away from the player to be considered 'hit'.
-    private int SPAWN_OFFSET = 2;           // Spawn offset from borders of map.
-    private int BOT_COUNT = 2;              // Number of bots present.
+    // Public Adjustment Variables
+    public int MAX_HEALTH = 3;            // Max number of hits the player can take before failing.
+    public int HIT_DIST = 2;               // Amount of studs away from the player to be considered 'hit'.
+    public int SPAWN_OFFSET = 2;           // Spawn offset from borders of map.
+    public int BOT_COUNT = 2;              // Number of bots present.
 
     // Private Fluid Variables
     private bool Game_Over = false;         // Checks if the game is currently playing.
