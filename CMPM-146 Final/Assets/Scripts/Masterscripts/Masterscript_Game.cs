@@ -16,6 +16,7 @@ public class Masterscript_Game : MonoBehaviour
     public GameObject Bot_List;             // Empty List of Bots
     public GameObject Level;                // Game Level
     public GameObject Bot_Prefab;           // Bot Enemy Prefab
+    public List<GameObject> BotObj;         // Bot Object List
 
     // Private Adjustment Variables
     private int MAX_HEALTH = 3;            // Max number of hits the player can take before failing.
@@ -75,27 +76,26 @@ public class Masterscript_Game : MonoBehaviour
     
     // Checks to see if there are any bots within the 'hit' vacinity,
     // then 'respawns' the bot once its hit.
-    private void check_Hit() {
-        foreach (Transform Bot in Bot_List.transform) {
-            // Distance from bot to player
-            float distance = Vector3.Distance(Player.transform.position, Bot.position);
 
-            // Check if theres no behavior script
-            if (!Bot.gameObject.GetComponent<BehaviorTree>())
-            {
-                Destroy(Bot.gameObject);
-            }
+    private void check_Hit() {
+        List<GameObject> temp = new List<GameObject>();
+        foreach (GameObject Bot in BotObj) {
+            // Distance from bot to player
+            float distance = Vector3.Distance(Player.transform.position, Bot.transform.position);
 
             // Check Hit
             if (distance < HIT_DIST && Bot.gameObject.GetComponent<BehaviorTree>())
             {
-                Debug.Log("BOT HAS HIT THE PLAYER");
-                Destroy(Bot.gameObject.GetComponent<BehaviorTree>());
+                temp.Add(Bot);
+                Destroy(Bot.gameObject);
                 Num_Bots--;
-                
                 // Reducing Health
                 Current_Health -= 1;
             }
+        }
+        // deletes the bots from the List
+        foreach(GameObject Bot in temp) {
+            BotObj.Remove(Bot);
         }
     }
     
