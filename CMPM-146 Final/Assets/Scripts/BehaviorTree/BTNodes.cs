@@ -52,15 +52,17 @@ public class Selector : Composite
          if(result == Result.Running) {
             return Result.Running;
          } else if( result == Result.Success) {
+            currentNode = 0;
             return Result.Success;
          } else if( result == Result.Failure) {
+            //Debug.Log("Completed: " +Children[currentNode]);
             currentNode++;
             if(currentNode < Children.Count) {
                return Result.Running;
             }
          }
       }
-
+      currentNode = 0;
       return Result.Failure;
    }
 }
@@ -82,6 +84,7 @@ public class Sequencer : Composite
             currentNode = 0;
             return Result.Failure;
          } else {
+            //Debug.Log("Completed: " +Children[currentNode]);
             currentNode++;
             if(currentNode < Children.Count) {
                return Result.Running;
@@ -91,7 +94,7 @@ public class Sequencer : Composite
             }
          }
       }
-
+      currentNode = 0;
       return Result.Success;
    }
 }
@@ -121,6 +124,23 @@ public class RepeatUntilSuccess : Decorator
    {
       Result result = Child.Execute();
       if(result == Result.Success)
+      {
+         return Result.Success;
+      }
+      return Result.Running;
+   }
+}
+
+public class RepeatUntilFailure : Decorator
+{
+   public RepeatUntilFailure(BehaviorTree t, Node c) : base(t, c)
+   {
+   }
+
+   public override Result Execute()
+   {
+      Result result = Child.Execute();
+      if(result == Result.Failure)
       {
          return Result.Success;
       }
