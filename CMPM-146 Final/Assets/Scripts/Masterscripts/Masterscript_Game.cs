@@ -17,7 +17,7 @@ public class Masterscript_Game : MonoBehaviour
     public GameObject Level;                // Game Level
 
     // Private Adjustment Variables
-    private int MAX_HEALTH = 10;             // Max number of hits the player can take before failing.
+    private int MAX_HEALTH = 10;            // Max number of hits the player can take before failing.
     private int HIT_DIST = 2;               // Amount of studs away from the player to be considered 'hit'.
     private int SPAWN_OFFSET = 2;           // Spawn offset from borders of map.
 
@@ -34,7 +34,7 @@ public class Masterscript_Game : MonoBehaviour
     private void respawn_Bot(Transform Bot) {
         float offset = Random.Range(0, SPAWN_OFFSET + 1);
         int direction = Random.Range(0, 9);
-        float half_dist = 20f; // Hardcoded
+        float half_dist = 60f; // Hardcoded
         offset = half_dist - offset;
 
         switch(direction)

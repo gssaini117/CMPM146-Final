@@ -17,7 +17,7 @@ public class BehaviorTree : MonoBehaviour
     void Start()
     {
         Blackboard = new Dictionary<string, object>();
-        Blackboard.Add("WorldBounds", new Rect(0,0,40,40));
+        Blackboard.Add("WorldBounds", new Rect(0,0,60,60));
 
         // initial behavior is stopped
         StartedBehavior = false;
