@@ -10,7 +10,7 @@ public class TakeCover : Node
 {
    private bool running = false;
    protected Vector3 NextDestination {get; set;}
-   private Vector3 Player = new Vector3(0,4,0);
+   private Vector3 Player = new Vector3(0,2,0);
    private Collider[] Colliders = new Collider[20]; // more is less performant, but more options
    public float HideSensitivity = -0.1f;
    public TakeCover(BehaviorTree t) : base(t)

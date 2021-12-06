@@ -8,8 +8,7 @@ public class WalkToPlayer : Node
 
    public WalkToPlayer(BehaviorTree t) : base(t)
    {
-      NextDestination = new Vector3(0,4,0);
-      Tree.agent.destination = NextDestination;
+      NextDestination = new Vector3(0,2,0);
    }
 
 

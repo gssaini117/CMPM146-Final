@@ -25,9 +25,11 @@ public class BehaviorTree : MonoBehaviour
 
         // modify this to create the Behavior Tree
 
+        Node[] killPlayer = new Node[] { new KillZone(this), new RunToPlayer(this)};
+
         Node[] takeCover = new Node[] {new PlayerLookingTowards(this),new TakeCover(this)};
 
-        Node[] selector = new Node[] {new Sequencer(this, takeCover), new WalkToPlayer(this)};
+        Node[] selector = new Node[] {new Sequencer(this, killPlayer), new Sequencer(this, takeCover), new WalkToPlayer(this)};
 
         mRoot = new Repeater(this, new Selector(this, selector));
     }
