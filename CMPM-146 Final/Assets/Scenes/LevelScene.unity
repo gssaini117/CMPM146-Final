@@ -7325,7 +7325,7 @@ MonoBehaviour:
   Player: {fileID: 922166658}
   Bot_List: {fileID: 108348683}
   Level: {fileID: 483700434}
-  Bot_Prefab: {fileID: 3119436963654907535, guid: fb3cdde94ac0a4f43b4d2b023e17e204, type: 3}
+  Bot_Prefab: {fileID: 1808945959405178777, guid: 2c2dff2c03c602e4d87f84d68335bc17, type: 3}
 --- !u!4 &1481539466
 Transform:
   m_ObjectHideFlags: 0

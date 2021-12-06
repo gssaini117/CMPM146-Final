@@ -116,7 +116,7 @@ public class Masterscript_Game : MonoBehaviour
         if (Game_Over) { return; } // Only runs once the game has started
         
         // Making sure bots are available
-        if (Bot_List.transform.childCount < BOT_COUNT) 
+        if (Num_Bots < BOT_COUNT) 
         {
             spawn_Bot();
         }
