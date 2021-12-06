@@ -97,7 +97,7 @@ public class TakeCover : Node
          Tree.agent.destination = NextDestination;
          return Result.Running;
       } else{
-         if(Tree.agent.hasPath == false) {
+         if(Tree.agent.hasPath == false || Tree.agent.velocity.magnitude <= 0.1) {
             running = false;
             return Result.Success;
          }

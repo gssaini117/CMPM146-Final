@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public float getHealth () {
+        return health;
+    }
+
     private void Die()
     {
         Destroy(gameObject);

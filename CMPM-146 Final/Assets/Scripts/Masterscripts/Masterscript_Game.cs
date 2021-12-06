@@ -18,10 +18,10 @@ public class Masterscript_Game : MonoBehaviour
     public GameObject Bot_Prefab;           // Bot Enemy Prefab
 
     // Private Adjustment Variables
-    private int MAX_HEALTH = 10;            // Max number of hits the player can take before failing.
+    private int MAX_HEALTH = 3;            // Max number of hits the player can take before failing.
     private int HIT_DIST = 2;               // Amount of studs away from the player to be considered 'hit'.
     private int SPAWN_OFFSET = 2;           // Spawn offset from borders of map.
-    private int BOT_COUNT = 10;              // Number of bots present.
+    private int BOT_COUNT = 2;              // Number of bots present.
 
     // Private Fluid Variables
     private bool Game_Over = false;         // Checks if the game is currently playing.
@@ -80,11 +80,17 @@ public class Masterscript_Game : MonoBehaviour
             // Distance from bot to player
             float distance = Vector3.Distance(Player.transform.position, Bot.position);
 
+            // Check if theres no behavior script
+            if (!Bot.gameObject.GetComponent<BehaviorTree>())
+            {
+                Destroy(Bot.gameObject);
+            }
+
             // Check Hit
-            if (distance < HIT_DIST)
+            if (distance < HIT_DIST && Bot.gameObject.GetComponent<BehaviorTree>())
             {
                 Debug.Log("BOT HAS HIT THE PLAYER");
-                Destroy(Bot.gameObject);
+                Destroy(Bot.gameObject.GetComponent<BehaviorTree>());
                 Num_Bots--;
                 
                 // Reducing Health
