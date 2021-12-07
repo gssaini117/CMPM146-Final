@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScene.unity
     guid: a52732e71131678429bdb13ebaf03cc7
   - enabled: 1
+    path: Assets/Scenes/FunScene.unity
+    guid: c7e244d4476c5574b801fe0d0cad0d85
+  - enabled: 1
     path: Assets/Scenes/Scene_End.unity
     guid: ee5df12bda6c00a409520e8b1688b742
   - enabled: 1

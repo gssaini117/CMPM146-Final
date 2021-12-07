@@ -16,6 +16,7 @@ public class Masterscript_Start : MonoBehaviour
     {
         Debug.Log("Start has been pressed");
         SceneManager.LoadScene("LevelScene");
+        //SceneManager.LoadScene("FunScene");
     }
 
     // Enacts Tutorial Behavior
@@ -29,6 +30,7 @@ public class Masterscript_Start : MonoBehaviour
     private void press_Exit()
     {
         Debug.Log("Exit has been pressed");
+        Application.Quit();
     }
 
     // Runs ones to bind button behaviors to the buttons.

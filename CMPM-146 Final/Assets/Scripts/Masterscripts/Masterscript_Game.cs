@@ -100,12 +100,16 @@ public class Masterscript_Game : MonoBehaviour
     // Update / Start Loop
     // ==================================================================
     // Start is called before the first frame update
-    void Start() {}
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Game_Over) { 
+        if (Game_Over) {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Scene_End");
         } // Only runs once the game has started
 
