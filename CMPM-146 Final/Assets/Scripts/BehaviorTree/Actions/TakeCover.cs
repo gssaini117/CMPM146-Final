@@ -12,7 +12,7 @@ public class TakeCover : Node
    protected Vector3 NextDestination {get; set;}
    private Vector3 Player = new Vector3(0,2,0);
    private Collider[] Colliders = new Collider[20]; // more is less performant, but more options
-   public float HideSensitivity = -0.1f;
+   public float HideSensitivity = -0.2f;
    public TakeCover(BehaviorTree t) : base(t)
    {
       NextDestination = Tree.gameObject.transform.position;

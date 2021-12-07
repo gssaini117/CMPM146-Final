@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     public AudioSource groan;
     public AudioSource scream;
     public NavMeshAgent agent;
+    public Animator anim;
     public float health = 10f;
     private float groaning = 0f;
     private bool hasNotScreamed = true;
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         groaning = Random.Range(6f, 12f);
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
 
         if (agent.speed > 3f)
         {
+            anim.SetTrigger("Kill");
             if (hasNotScreamed)
             {
                 scream.Play();
