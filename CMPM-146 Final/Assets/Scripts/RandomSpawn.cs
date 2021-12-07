@@ -13,7 +13,6 @@ public class RandomSpawn : MonoBehaviour
         int rand = Random.Range(0, objects.Length);
         float rotate = 90f * Random.Range(0, objects.Length);
         Instantiate(objects[rand], transform.position, transform.rotation * Quaternion.Euler(0f, rotate, 0f));
-        Debug.Log(rand);
     }
 
     // Update is called once per frame
