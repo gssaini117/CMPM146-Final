@@ -12,6 +12,9 @@ public class Masterscript_Game : MonoBehaviour
     // ==================================================================
     // Public Variables
     public Canvas Game_Screen;              // In-Game Ui
+    public AudioSource music;               // Background Ambience
+    public AudioSource bite;                // Sound when Enemy reaches Player
+    public AudioSource hit;                 // Sound when Player shoots Enemy
 
     public GameObject Player;               // Player Object
     public GameObject Bot_List;             // Empty List of Bots
@@ -83,12 +86,14 @@ public class Masterscript_Game : MonoBehaviour
                 if (distance > HIT_DIST) {
                     Kill_Count++;
                 }
+                hit.PlayDelayed(0.15f);
                 Destroy(Bot.gameObject);
             }
 
             // Check Hit
             if (distance < HIT_DIST && Bot.gameObject.GetComponent<BehaviorTree>())
             {
+                bite.Play();
                 Destroy(Bot.gameObject.GetComponent<BehaviorTree>());
                 MAX_HEALTH -= 1;
             }
@@ -103,6 +108,7 @@ public class Masterscript_Game : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        music.Play();
     }
 
     // Update is called once per frame

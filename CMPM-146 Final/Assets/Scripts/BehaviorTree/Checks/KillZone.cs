@@ -13,7 +13,7 @@ public class KillZone : Node
     {
         // do the check here?
         Vector3 playerPos = new Vector3(0, 2, 0);
-        if (Vector3.Distance(Tree.agent.transform.position, playerPos) <= 5)
+        if (Vector3.Distance(Tree.agent.transform.position, playerPos) <= 6)
         {
             return Result.Success;
         }
