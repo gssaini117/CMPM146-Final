@@ -5004,9 +5004,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1278913713938843006, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
+      propertyPath: range
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1278913714038561707, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278913714038561711, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
+      propertyPath: mouseSensitivity
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1278913714187301434, guid: 8cf3d6703210e564798bc5f894e0175b, type: 3}
       propertyPath: m_Layer

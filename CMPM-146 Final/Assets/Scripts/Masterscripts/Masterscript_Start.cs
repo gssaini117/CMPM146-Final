@@ -15,8 +15,8 @@ public class Masterscript_Start : MonoBehaviour
     private void press_Start()
     {
         Debug.Log("Start has been pressed");
-        SceneManager.LoadScene("LevelScene");
-        //SceneManager.LoadScene("FunScene");
+        //SceneManager.LoadScene("LevelScene");
+        SceneManager.LoadScene("FunScene");
     }
 
     // Enacts Tutorial Behavior
