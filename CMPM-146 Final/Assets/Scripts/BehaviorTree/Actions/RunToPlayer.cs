@@ -13,7 +13,7 @@ public class RunToPlayer : Node
 
     public override Result Execute()
     {
-        Tree.agent.speed = 5f;
+        Tree.agent.speed = 4f;
         Tree.agent.destination = NextDestination;
         // uninterruptable
         if(Tree.agent.remainingDistance == 0) {
